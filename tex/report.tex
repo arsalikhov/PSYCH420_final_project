@@ -1,13 +1,17 @@
 \documentclass{article}
 
+
+
 \title{Use of Deep Spiking Neural Network for Object Recognition}
 \author{Arslan Salikhov  \\
-	University of Waterloo  \\
 	\and 
 	Erik Caceros \\
-	University of Waterloo \\
+	\and
+	Brandon Lam \\
 	}
 \date{\today}
+
+\usepackage{listings}
 
 \usepackage{titling}
 \renewcommand\maketitlehooka{\null\mbox{}\vfill}
@@ -33,6 +37,18 @@ Object Recognition Deep Neural Network
 
 \section{Introduction}
 
+
+\lstset{language=Python}
+\lstset{frame=lines}
+\lstset{caption={Insert code directly in your document}}
+\lstset{label={lst:code_direct}}
+\lstset{basicstyle=\footnotesize}
+\begin{lstlisting}
+from brg.datastructures import Mesh
+ 
+mesh = Mesh.from_obj('faces.obj')
+mesh.draw()
+\end{lstlisting}
 
 
 
