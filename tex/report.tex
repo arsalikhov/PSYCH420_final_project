@@ -12,6 +12,7 @@
 \date{\today}
 
 \usepackage{listings}
+\usepackage{mathtools}
 
 \usepackage{titling}
 \renewcommand\maketitlehooka{\null\mbox{}\vfill}
@@ -26,9 +27,9 @@
 
 \begin{abstract}
 Use of Deep Neural Network, commonly referred to as
-\textit{deep learning} spiked in recent years and has been used
+\emph{deep learning} spiked in recent years and has been used
 as a tool for impressive advancements in the field of 
-\textit{Artificial Intelligence (AI)}
+\emph{Artificial Intelligence (AI)}
 Spiking Neural Networks draw inspiration from the 
 Purpose of this project is to demonstrate the capabilities of a 
 Spiking Neural Network and compare it to a more conventional 
@@ -36,19 +37,15 @@ Object Recognition Deep Neural Network
 \end{abstract}
 
 \section{Introduction}
+Hello 
+\[
+    f(x)= 
+\begin{dcases}
+    \frac{x^2-x}{x},& \text{if } x\geq 1\\
+    0,              & \text{otherwise}
+\end{dcases}
+\]
 
-
-\lstset{language=Python}
-\lstset{frame=lines}
-\lstset{caption={Insert code directly in your document}}
-\lstset{label={lst:code_direct}}
-\lstset{basicstyle=\footnotesize}
-\begin{lstlisting}
-from brg.datastructures import Mesh
- 
-mesh = Mesh.from_obj('faces.obj')
-mesh.draw()
-\end{lstlisting}
 
 
 
