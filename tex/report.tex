@@ -1,6 +1,21 @@
 \documentclass{article}
 
-
+\usepackage{listings}
+\usepackage{mathtools}
+\usepackage{apacite}
+\usepackage{blindtext}
+\usepackage{titling}
+\renewcommand\maketitlehooka{\null\mbox{}\vfill}
+\renewcommand\maketitlehookd{\vfill\null}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
 
 \title{Use of Deep Spiking Neural Network for Object Recognition}
 \author{Arslan Salikhov  \\
@@ -11,18 +26,17 @@
 	}
 \date{\today}
 
-\usepackage{listings}
-\usepackage{mathtools}
 
-\usepackage{titling}
-\renewcommand\maketitlehooka{\null\mbox{}\vfill}
-\renewcommand\maketitlehookd{\vfill\null}
 
 \begin{document}
 
 \begin{titlingpage}
 \maketitle
 \end{titlingpage}
+
+
+\tableofcontents
+\newpage
 
 
 \begin{abstract}
@@ -38,7 +52,9 @@ Object Recognition Deep Neural Network
 
 \section{Introduction}
 
-
+The dataset used for training, validating and testing the 
+model was assembled by Microsoft and will be referred as
+COCO throughout this report (\citeA{COCOdataset}).
 
 \subsection{Imbalanced Threshold} 
 \[
@@ -50,6 +66,8 @@ Object Recognition Deep Neural Network
 \end{dcases}
 \]
 
-
+\newpage
+\bibliographystyle{apacite}
+\bibliography{report}
 
 \end{document}
