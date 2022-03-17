@@ -37,15 +37,18 @@ Object Recognition Deep Neural Network
 \end{abstract}
 
 \section{Introduction}
-Hello 
+
+
+
+\subsection{Imbalanced Threshold} 
 \[
     f(x)= 
 \begin{dcases}
-    \frac{x^2-x}{x},& \text{if } x\geq 1\\
-    0,              & \text{otherwise}
+    1 ,& \text{if } {V_{mem}}\geq V_{th,pos}(V_{th})\\
+	-1 ,& \text{if } {V_{mem}}\geq V_{th,neg}(-\frac{1}{\alpha}V_{th})\\
+    0,              & \text{otherwise, no firing}
 \end{dcases}
 \]
-
 
 
 
