@@ -1,0 +1,15 @@
+{
+"images":{
+    "train": "/media/gamedisk/COCO_dataset/images/train2017",
+    "val": "/media/gamedisk/COCO_dataset/images/val2017",
+    "test": "/media/gamedisk/COCO_dataset/images/test2017",
+    "unlabeled": "/media/gamedisk/COCO_dataset/images/unlabeled2017"
+    },
+"annotations":{
+    "train": "/media/gamedisk/COCO_dataset/images/train2017",
+    "val": "/media/gamedisk/COCO_dataset/images/val2017",
+    "test": "/media/gamedisk/COCO_dataset/images/test2017",
+    "unlabeled": "/media/gamedisk/COCO_dataset/images/unlabeled2017"
+    } 
+}
+
