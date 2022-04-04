@@ -38,6 +38,8 @@ class myOwnDataset(torch.utils.data.Dataset):
         path = coco.loadImgs(img_id)[0]['file_name']
         # open the input image
         img = Image.open(os.path.join(self.root, path))
+        img = img.convert('RGB')
+        # img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
         # unmasked_img = np.array(unmasked_img)
         # #create_mask
         # mask = coco.annToMask(coco_annotation[0])
@@ -107,6 +109,7 @@ class MyOwnDataloader:
         custom_transforms = []
         custom_transforms.append(torchvision.transforms.Resize((224, 224)))
         custom_transforms.append(torchvision.transforms.ToTensor())
+        custom_transforms.append(torchvision.transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]))
         return torchvision.transforms.Compose(custom_transforms)
 
     # collate_fn needs for batch
