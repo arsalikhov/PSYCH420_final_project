@@ -16,8 +16,9 @@ pylab.rcParams['figure.figsize'] = (8.0, 10.0)
 
 
 class myOwnDataset(torch.utils.data.Dataset):
-    def __init__(self, root, coco, annotation, ids, cat, labels, transforms=None):
+    def __init__(self, root, coco, ids, cat, labels, classifier = False, transforms=None):
         self.root = root
+        self.classifier = classifier
         self.transforms = transforms
         self.coco = coco
         self.ids = ids
@@ -84,6 +85,10 @@ class myOwnDataset(torch.utils.data.Dataset):
         my_annotation["area"] = areas
         my_annotation["iscrowd"] = iscrowd
 
+        if self.classifier:
+            my_annotation == my_annotation['labels'][0]
+
+
         if self.transforms is not None:
             img = self.transforms(img)
 
@@ -96,7 +101,7 @@ class myOwnDataset(torch.utils.data.Dataset):
 
 class MyOwnDataloader:
 
-    def __init__(self, dataDir, dataType, annFile, classes, train_batch_size):
+    def __init__(self, dataDir, dataType, annFile, classes, train_batch_size, classifier = False):
 
         self.coco = COCO(annFile)
         self.dataDir = dataDir
@@ -104,10 +109,11 @@ class MyOwnDataloader:
         self.annFile = annFile
         self.classes = classes
         self.train_batch_size = train_batch_size
+        self.classifier = classifier
 
     def get_transform(self):
         custom_transforms = []
-        custom_transforms.append(torchvision.transforms.Resize((224, 224)))
+        custom_transforms.append(torchvision.transforms.Resize((256, 256)))
         custom_transforms.append(torchvision.transforms.ToTensor())
         custom_transforms.append(torchvision.transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]))
         return torchvision.transforms.Compose(custom_transforms)
@@ -126,10 +132,10 @@ class MyOwnDataloader:
                 print(key, value, ids, imgIds[0])
             interim = myOwnDataset(root= self.dataDir + 'images/'+ self.dataType,
                                 coco=self.coco,
-                                annotation=self.annFile,
                                 ids = imgIds,
                                 cat = ids,
                                 labels = value,
+                                classifier = self.classifier,
                                 transforms=self.get_transform())
 
             sub_class_sets.append(interim)
