@@ -1,0 +1,4 @@
+\standalonepreambles
+\subpreamble{../sections/arslan.tex}
+\graphicspath {{\subfix {../images/}}}
+\endsubpreamble
