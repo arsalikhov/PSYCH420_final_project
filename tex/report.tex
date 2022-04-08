@@ -63,7 +63,7 @@ enhanced by \citeA{barchid2021deep}. \textit{DECOLLE} Neural Network adopts
 properties of classical ResNet model architecture as well as a pyramidal structure that
 was proposed by \citeA{pyramid}. 
 
-\subsection{ResNet}
+\subsection{ResNets}
 
 \begin{wrapfigure}[21]{r}{0.42\textwidth}
 \begin{center}
@@ -94,7 +94,8 @@ of the model at predicting class of the object in the image is not enough. Thus,
 two additional performance metrics have been adapted : Mean Average Precision (mAP) and
 Intersection of Union (IoU). Firstly, Mean Average Precision for the purposes of Object
 Detection is well-defined in the paper by \citeA{evaluation}. According to the authors,
-mAP is mean of Average Precision of the model for all the classes in the dataset.
+mAP is mean of Average Precision of the model for all the classes in the dataset. It is
+calculated using the following equation.
 
 
 \begin{equation}
@@ -104,13 +105,55 @@ mAP is mean of Average Precision of the model for all the classes in the dataset
 \begingroup
 \fontsize{7pt}{9pt}\selectfont
 \begin{enumerate}
-	\item[]  \begin{center} \textit{AP = Average Precision,} \end{center}
-	\item[] \begin{center}  \textit{N = number of classes.} \end{center}
+	\item[]  \begin{center} AP = Average Precision, \end{center}
+	\item[] \begin{center}  N = number of classes. \end{center}
 \end{enumerate}
 \endgroup
 
-Moreover, ResNets perform better
-than plain Deep Convolutional Networks in terms of accuracy. In order to compare 
+
+Next, IoU is the area of overlap of ground-truth boxes and the model's detected box output,
+the higher the IoU the better performance of the model. Intersection of Union can be 
+represented as follows:
+
+\begin{equation}
+	\textbf{IoU} = |A \cap B| \div  |A \cup B| = |I| \div |U|
+\end{equation}
+
+\begingroup
+\fontsize{7pt}{9pt}\selectfont
+\begin{enumerate}
+	\item[]  \begin{center} I = Intersection area, \end{center}
+	\item[] \begin{center}  U = Union area. \end{center}
+\end{enumerate}
+\endgroup
+
+
+\subsection{Pyramidal Architecture of Neural Network}
+% Moreover, ResNets perform better
+% than plain Deep Convolutional Networks in terms of accuracy. In order to compare
+
+Pyramidal structure of a Neural Network refers to the shape of the layers as the model
+gets deeper. With each layer dimensions of convolutional layers shrink (usually in half).
+For example, the first convolutional layer would have input dimension equal to number of
+channels in the image (3 channels in case of RGB images vs. 1 for grayscale) and the output
+dimension of 512, with next layer input equal to previous layer's output. Second layer
+would have the dimension of 256 (half of previous layer's output) and so on (\citeA{pyramid}).
+
+For the purposes of our network, pyramidal structure of neural network is leveraged using
+Encoder-Decoder model. When image is passed through the shrinking layers of the Encoder
+Pyramid, it loses resolution as well as contextual information, however when the image
+leaves the encoder and is located in the hidden state it is fully comprised of
+the semantic information about the image (What object is on the picture and where it is
+located). Furthermore, in order to localize an object on the image that model has never 
+encountered before, it has to be able to place the semantic information in context. 
+This is where Decoder comes into play, being the reverse of an Encoder, the convolutional
+layers of decoder double in size until desired dimensions. The decoder is residually
+connected to encoder, and thus it gains contextual information about the image through
+every pass of a layer.
+
+At the end, in order to extract the meaningful operation, last decoder layer is connected
+to fully connected linear layers that produce the output predicted class as well as
+detected box coordinates.
 
 \newpage
 \bibliographystyle{apacite}
