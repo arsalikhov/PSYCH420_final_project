@@ -1,1 +1,0 @@
-{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QsnnTorch also allowed us to integrate backpropogation for\\E$"}

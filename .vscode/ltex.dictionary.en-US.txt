@@ -1,9 +1,0 @@
-ResNet
-residually
-resnet
-ResNets
-FLOPs
-DECOLLE
-IoU
-unpooling
-LIF
