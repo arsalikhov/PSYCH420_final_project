@@ -14,6 +14,34 @@
 \renewcommand\maketitlehooka{\null\mbox{}\vfill}
 \renewcommand\maketitlehookd{\vfill\null}
 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.76, 0.76, 0.76}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
 
 
 \title{Spiking Neural Networks}
@@ -50,7 +78,7 @@
 
 
 
-\section{Architecture of the Spiking Neural Network}
+\section{Architectures Of Deep Neural Networks}
 
 When it comes to building a neural network, one has to establish an
 architecture or an arrangement of layers and how they connect with each other.
@@ -129,8 +157,7 @@ represented as follows:
 
 
 \subsection{Pyramidal Architecture of Neural Network}
-% Moreover, ResNets perform better
-% than plain Deep Convolutional Networks in terms of accuracy. In order to compare
+
 
 Pyramidal structure of a Neural Network refers to the shape of the layers as the model
 gets deeper. With each layer dimensions of convolutional layers shrink (usually in half).
@@ -151,9 +178,70 @@ layers of decoder double in size until desired dimensions. The decoder is residu
 connected to encoder, and thus it gains contextual information about the image through
 every pass of a layer.
 
-At the end, in order to extract the meaningful operation, last decoder layer is connected
-to fully connected linear layers that produce the output predicted class as well as
+At the end, in order to extract meaningful, last decoder layer is connected
+to fully connected linear layers that  output predicted class as well as
 detected box coordinates.
+
+
+
+
+
+\subsection{Architecture of the Model Used}
+
+
+Architecture developed by \citeA{barchid2021deep} was the target to replicate. The model is based
+on Encoder-Decoder architecture with residually connected layers akin to ResNets. Encoder and 
+Decoder follow the pyramidal architecture that was discussed earlier. 
+
+\begin{figure}[h]
+	\begin{center}
+		\scalebox{0.4}{\includegraphics{barchid_SED.png}}
+	
+	\end{center}
+	\caption{Sketch of the model's architecture. White layers represent convolutional layers,
+	blue represent pooling layers, and red unpooling layers}
+\end{figure}
+
+
+
+
+\section{Implementation}
+
+\subsection{PyTorch}
+
+The main package that allowed us to develop such a complex model was PyTorch. PyTorch
+is an open-source a machine learning/deep learning library and framework for Python 
+that allows user to develop and ship high performance models (\citeA{pytorch}). This library
+eliminates the need from scratch development of the most important methods in machine learning,
+such as activation functions, model architecture assembly, 
+
+
+\subsection{Spiking Neurons}
+
+Given the complexity of Spiking Neural Networks and the integration of Leaky-Integrate-and-Fire
+into the network, we used a package that allows to use LIF within a PyTorch model -- 
+\href{https://snntorch.readthedocs.io/en/latest/snntorch.html}{\textit{snnTorch}}. 
+snnTorch also allowed us to integrate backpropogation for spiking neural networks
+with one line. Indeed, to use LIF in your model only need to use one line in model
+definition.
+
+\begin{lstlisting}[language=Python, caption=Leaky-Integrate-and-Fire using snnTorch]
+	import snntorch as snn
+
+	lif1 = snn.Leaky(beta=beta, spike_grad=spike_grad)
+
+\end{lstlisting}
+
+\section{Challenges}
+
+With the number of operations required to train the model to complete the task of object
+localization, it was clear since the beginning that a lot of compute power was required. A number
+of steps was required in order to make this project plausible the scope of this course.
+
+First challenge in implementation of the model was difficulty to replicate the 
+\citeA{barchid2021deep} paper given how the lack of description on the implimintation in the 
+paper as well non-existence of public repository with the code for their model.
+
 
 \newpage
 \bibliographystyle{apacite}
