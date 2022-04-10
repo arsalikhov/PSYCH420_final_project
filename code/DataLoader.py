@@ -53,6 +53,8 @@ class myOwnDataset(torch.utils.data.Dataset):
         # img = Image.fromarray(img)
         # number of objects in the image
         num_objs = len(coco_annotation)
+        if num_objs > 1:
+            pass
 
         # Bounding boxes for objects
         # In coco format, bbox = [xmin, ymin, width, height]
