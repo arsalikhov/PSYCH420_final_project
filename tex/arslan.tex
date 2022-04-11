@@ -1,6 +1,7 @@
 
 \section{Architectures Of Deep Neural Networks}
 
+
 When it comes to building a neural network, one has to establish an
 architecture or an arrangement of layers and how they connect with each other.
 It is particularly important, when the network increases in complexity. Object
@@ -12,16 +13,8 @@ enhanced by \citeA{barchid2021deep}. \textit{DECOLLE} Neural Network adopts
 properties of classical ResNet model architecture as well as a pyramidal structure that
 was proposed by \citeA{pyramid}. 
 
+
 \subsection{ResNets}
-
-\begin{wrapfigure}[21]{r}{0.42\textwidth}
-\begin{center}
-	\scalebox{0.35}{\includegraphics{resnet_comp.png}}
-\end{center}
-	\caption{Examples of 16-layer VGG, Plain 34-layer, and 34-layer ResNet Network 
-	Architectures}
-\end{wrapfigure}
-
 
 
 
@@ -109,11 +102,6 @@ detected box coordinates.
 
 \subsection{Architecture of the Model Used}
 
-
-Architecture developed by \citeA{barchid2021deep} was the target to replicate. The model is based
-on Encoder-Decoder architecture with residually connected layers akin to ResNets. Encoder and 
-Decoder follow the pyramidal architecture that was discussed earlier. 
-
 \begin{figure}[h]
 	\begin{center}
 		\scalebox{0.4}{\includegraphics{barchid_SED.png}}
@@ -122,6 +110,10 @@ Decoder follow the pyramidal architecture that was discussed earlier.
 	\caption{Sketch of the model's architecture. White layers represent convolutional layers,
 	blue represent pooling layers, and red unpooling layers}
 \end{figure}
+
+Architecture developed by \citeA{barchid2021deep} was the target to replicate. The model is based
+on Encoder-Decoder architecture with residually connected layers akin to ResNets. Encoder and 
+Decoder follow the pyramidal architecture that was discussed earlier. 
 
 
 
@@ -155,12 +147,38 @@ definition.
 
 \end{lstlisting}
 
+\subsection{Membrane Potentials}
+
+We have previously discussed the difficulty of implementing membrane potentials into spiking neural networks. Thankfully, snnTorch provides a method that stores that information for the duration of an epoch.
+
+\begin{lstlisting}[language=Python, caption=snnTorch Implementation of Membrane Potentials]
+import snntorch as snn
+import torch as nn
+
+spike_grad = surrogate.fast_sigmoid(slope=25)
+beta = 0.5
+
+def mock_layer(input):
+
+    conv1 = nn.Conv2d(in_channels, 32, kernel_size=7)
+    lif1 = snn.Leaky(beta=beta, spike_grad=spike_grad)
+
+    out = self.conv1(input)
+    out = F.max_pool2d(out, 2)
+    spike, membrane_potential = self.lif1(out, membrane_potential)
+		return spike, membrane_potential
+
+\end{lstlisting}
+
+
 \section{Challenges}
 
+\subsection{What}
+
 With the number of operations required to train the model to complete the task of object
-localization, it was clear since the beginning that a lot of compute power was required. A number
+localization, it was clear since the beginning that a lot of computational power was required. A number
 of steps was required in order to make this project plausible the scope of this course.
 
 First challenge in implementation of the model was difficulty to replicate the 
-\citeA{barchid2021deep} paper given how the lack of description on the implimintation in the 
+\citeA{barchid2021deep} paper given the lack of description on the implementation in the 
 paper as well non-existence of public repository with the code for their model.

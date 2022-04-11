@@ -68,7 +68,8 @@ class myOwnDataset(torch.utils.data.Dataset):
             boxes.append([xmin, ymin, xmax, ymax])
         boxes = torch.as_tensor(boxes, dtype=torch.float32)
         # Labels (In my case, I only one class: target class or background)
-        labels = torch.as_tensor(np.full(num_objs, self.labels), dtype=torch.int64)
+        labels = torch.as_tensor(np.full(num_objs, self.labels), 
+        dtype=torch.int64)
         # Tensorise img_id
         img_id = torch.tensor([img_id])
         # Size of bbox (Rectangular)

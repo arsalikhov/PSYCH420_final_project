@@ -1,0 +1,1 @@
+{"rule":"A_INFINITIVE","sentence":"^\\QThe integrate and fire model, IaF, shows how the membrane potential of a neuron reacts to an injection of current.\\E$"}
