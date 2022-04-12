@@ -1,6 +1,6 @@
 \section{The Dataset}
 
-For purposes of the project, we have chosen to use the Microsoft Common Objects in Context, a dataset of over 330 thousand images, with over 200 of these labeled, 80 categories of instances, and over 1.5 million object instances all together (\citeA{COCOdataset}). This substantial dataset is utilized with an API developed specifically to access the contents of the dataset, both of which have been made open-source by their developers \href{https://github.com/cocodataset/cocoapi}{(Link to the API)}. The objectives of MSCOCO are to detect and categorize objects found within images based on their iconicity, their position in relation to other objects, and the binding coordinates of space they occupy in a given image. 
+For purposes of the project, we have chosen to use the Microsoft Common Objects in Context, a dataset of over 330 thousand images, with over 200 of these labeled, 80 categories of instances, and over 1.5 million object instances all together (\citeA{COCOdataset}). This substantial dataset is utilized with an API developed specifically to access the contents of the dataset, both of which have been made open-source by their developers \textit{\href{https://github.com/cocodataset/cocoapi}{(https://github.com/cocodataset/cocoapi)}}. The objectives of MSCOCO are to detect and categorize objects found within images based on their iconicity, their position in relation to other objects, and the binding coordinates of space they occupy in a given image. 
 
 
 \subsection{Properties of Data}
@@ -54,12 +54,6 @@ Functionally, when an image is analyzed, the program identifies key attributes w
 \end{enumerate}
 
 
-\begin{wrapfigure}[25]{r}{0.42\textwidth}
-	\begin{center}
-		\scalebox{0.45}{\includegraphics{resnet_comp.png}}
-	\end{center}
-		\caption{Examples of 16-layer VGG, Plain 34-layer, and 34-layer ResNet Network 
-		Architectures}
-\end{wrapfigure}
+
 
 The described properties of the image annotation should be considered in relation to the process segmentation in object recognition. Mainly, it’s important to consider that object-segmentation is a difficult process and requires an accurate bounding boxes prediction. Furthermore, considering that the dataset holds over 1.5 million category instances, given the sheer magnitude and complexity of the dataset efficiency plays a big role in training a neural-network that utilizes this dataset. As such, a major goal of our assignment is to build and train a spiking neural network model to do so.  

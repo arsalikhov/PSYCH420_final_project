@@ -1,14 +1,22 @@
-\section{Neural Networks}
+\section{Introduction}
 
-\subsection{Deep Neural Networks}
+Use of Deep Neural Network, commonly referred to as
+\emph{deep learning} spiked in recent years and has been popular
+as a tool for impressive advancements in the field of 
+\emph{Artificial Intelligence (AI)}.
+The goal of this project was to attempt and recreate a spiking neural network that is capable of object detection, particularly classification and localization. As described, our program was built on Deep Neural Networks, spiking neurons, and convolutional network frameworks, which we find interesting and important. Despite the inability to complete the product we nonetheless met our ultimate goal, to learn more about computational neuroscience. Moreover, our attempt at an object detecting, spiking neural network provided a comprehensive learning experience for all members, regardless of prior knowledge on the subject. 
 
-A Deep Neural Network, DNN, is a machine learning algorithm that tries to mimic how the brain processes information. The reason why DNNs are called deep is due to the networks having more than two hidden layers (\citeA{dnnDef}). The increased number of hidden layers enables DNNs to complete more complicated tasks compared to their shallow counterparts. However, increasing the number of hidden layers increases the training time in addition to the electrical power per epoch. 
+\subsection{Neural Networks}
 
-\subsection{Spiking Neural Network}
+% \subsection{Deep Neural Networks}
 
-Spiking Neural networks, SNN, mimic both the information encoding and the process within a human brain by using spiking neurons as activation functions (\citeA{maaasSnns}). SNN sends information as a discrete series of spikes as opposed to sending continuous real values that layers of DNNs output. The SNN model is efficient because the spiking neuron only integrates its value when the membrane potential, voltage, passes the threshold which enables event-driven computation (\citeA{kim2020spiking}). However, to harness the efficiency of spiking neural networks, they have to be trained and implemented on neuromorphic hardware.
+A Deep Neural Network, DNN, is a machine learning algorithm that tries to mimic how the brain processes information. The reason why DNNs are called deep is due to the networks having more than two hidden layers. The increased number of hidden layers enables DNNs to complete more complicated tasks compared to their shallow counterparts. However, increasing the number of hidden layers increases the training time in addition to the electrical power per epoch. 
 
-\section{How Does the Network Spike?}
+% \subsection{Spiking Neural Network}
+
+On the other hand, Spiking Neural Networks, SNNs, mimic both the information encoding and the process within a human brain by using spiking neurons as activation functions (\citeA{maaasSnns}). SNN sends information as a discrete series of spikes as opposed to sending continuous real values that layers of DNNs output. The SNN model is efficient because the spiking neuron only integrates its value when the membrane potential, voltage, passes the threshold which enables event-driven computation (\citeA{kim2020spiking}). However, to harness the efficiency of spiking neural networks, they have to be trained and implemented on neuromorphic hardware.
+
+% \section{What is Spiking in SNNs}
 
 \subsection{Leaky Integrate and Fire}
 
@@ -24,25 +32,25 @@ The Integrate and Fire model, IAF, shows how the membrane potential of a neuron 
 
 
 
-\subsection{Implementation of Membrane Potentials}
+% \subsection{Implementation of Membrane Potentials}
 
-In order to imitate behaviour of a neuron, SNNs have to keep and encode the membrane potential information. This is important, because membrane potential at the time  dictates to the neuron if it should fire, do nothing ot enter refractory period. Membrane potential in SNNs can be expressed with the following equation:
+% In order to imitate behaviour of a neuron, SNNs have to keep and encode the membrane potential information. This is important, because membrane potential at the time  dictates to the neuron if it should fire, do nothing or enter refractory period. Membrane potential in SNNs can be expressed with the following equation:
 
 
-\begin{equation}
-	V_{mem, j}^1(t) = V_{mem, j}^1(t-1) + z_j^l{t} - V_{th}\theta_j^l(t)
-\end{equation}
+% \begin{equation}
+% 	V_{mem, j}^1(t) = V_{mem, j}^1(t-1) + z_j^l{t} - V_{th}\theta_j^l(t)
+% \end{equation}
 
-\begingroup
-\fontsize{7pt}{9pt}\selectfont
-\begin{enumerate}
-    \item[] \begin{center}  $V_{mem, j}^1(t-1)$ = membrane potential at the previous time step, \end{center}
-	\item[]  \begin{center} $z_j^l{t}$ is a sum of products of weight and spikes + bias, \end{center}
-	\item[] \begin{center}  $V_{mem}$ = membrane voltage, \end{center}
-	\item[] \begin{center}  $\theta_j^l(t)$ is a spike, \end{center}
-	\item[] \begin{center}  $V_{th}$ = threshold voltage value. \end{center}
-\end{enumerate}
-\endgroup
+% \begingroup
+% \fontsize{7pt}{9pt}\selectfont
+% \begin{enumerate}
+%     \item[] \begin{center}  $V_{mem, j}^1(t-1)$ = membrane potential at the previous time step, \end{center}
+% 	\item[]  \begin{center} $z_j^l{t}$ is a sum of bias and products of weight and spikes, \end{center}
+% 	\item[] \begin{center}  $V_{mem}$ = membrane voltage, \end{center}
+% 	\item[] \begin{center}  $\theta_j^l(t)$ is a spike, \end{center}
+% 	\item[] \begin{center}  $V_{th}$ = threshold voltage value. \end{center}
+% \end{enumerate}
+% \endgroup
 
 Requirement to pass this information from layer to layer is one of the reasons why it is difficult to train Spiking Neural Networks (\citeA{kim2020spiking}). 
 
