@@ -1,3 +1,5 @@
+## Dataloader as well Dataset assembly classes that leverage torch template to create datasets and dataloaders. This script creates a custom dataloader from the entirety of the raw input data. It was required since standart MSCOCO dataset and dataloader included in PyTorch does not allow to select categoties to train the data on and by default makes a dataloader with all 80 categores. Moreover creation of custom dataloader allows for custom filters, image transformations, application of masks, and specification of number of objects in an image.
+
 from pycocotools.coco import COCO
 import numpy as np
 import skimage.io as io
